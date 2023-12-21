@@ -1,0 +1,373 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb} \usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[document]{ragged2e}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{changepage}
+\usepackage{esint}
+
+\geometry{a4paper,
+ total={170mm,257mm},
+ left=15mm,
+ right=20mm,
+ top=10mm,}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+\renewcommand\thesection{\Roman{section}}
+\newcommand{\Th}[3]
+{
+	\begin{center}
+		\begin{tcolorbox}[width={16cm},colback={red!50!black!40!white},title={\large{\white{\textbf{\underline{Théorème}}}} \white{\Large{\textbf{[ #2 ]}} :} \white{\large{#1}} },colbacktitle=red!50!black!60!white!90,coltitle=black]
+			\white{#3 .}
+		\end{tcolorbox}
+	\end{center}
+}
+\newcommand{\Def}[3]
+{
+	\begin{center}
+		\begin{tcolorbox}[width={16cm},colback={red!10!white},title={\large{\textbf{\underline{Définition}}} \Large{\textbf{[ #2 ]}} : \large{#1} },colbacktitle=red!30!white,coltitle=black]
+			#3.
+		\end{tcolorbox}
+	\end{center}
+}
+\newcommand{\Prop}[3]
+{
+	\begin{center}
+		\begin{tcolorbox}[width={16cm},colback={green!10!white},title={\large{\textbf{\underline{Propriété}}} \Large{\textbf{[ #2 ]}} : \large{#1} },colbacktitle=green!30!white,coltitle=black]
+			#3.
+		\end{tcolorbox}
+	\end{center}
+}
+\newcommand{\Rq}[3]
+{
+	\begin{center}
+		\begin{tcolorbox}[width={16cm},colback={cyan!10!white},title={\large{\textbf{\underline{Remarque}}} \Large{\textbf{[ #2 ]}} : \large{#1} },colbacktitle=cyan!30!white,coltitle=black]
+			#3.
+		\end{tcolorbox}
+	\end{center}
+}
+\newcommand{\mc}[1] {\mathbb{#1}}
+\newcommand{\mcal}[1] {\mathcal{#1}}
+\newcommand{\codeblock}[1]{\colorbox{white!80!black}{#1}}
+\newcommand{\imp}[1]{
+	\textbf{\color{orange!90!black} #1 \color{black}}
+}
+\newcommand{\code}[1]
+{
+	\begin{lstlisting}
+		#1
+	\end{lstlisting}
+}
+\newcommand{\vtab} {\vspace{0.4cm}}
+\newcommand{\htab} {\hspace{1cm}}
+\newcommand{\mhtab} {\hspace{0.4cm}}
+\newcommand{\fancy}[1] {$\mathfrak{#1}$}
+\newcommand{\alors}
+{
+	\vtab
+	\htab \color{green!70!black} $\longrightarrow$ \color{black}
+}
+\newcommand{\red}[1] {\color{red!80!black} #1 \color{black}}
+\newcommand{\blue}[1] {\color{blue!80!white} #1 \color{black}}
+\newcommand{\green}[1] {\color{green!80!black} #1 \color{black}}
+\newcommand{\orange}[1] {\color{orange!80!black} #1 \color{black}}
+\newcommand{\yellow}[1] {\color{yellow!60!black} #1 \color{black}}
+\newcommand{\white}[1] {\color{white!90!black} #1 \color{black}}
+\newcommand{\eqi}[0] {\blue{\Leftrightarrow}}
+\newcommand{\soit}[1] {\text{\underline{\color{green!60!black}Soit\color{black}}} #1}
+\newcommand{\soitt}[2]
+{
+	\text{\underline{\color{green!60!black}Soit\color{black}}}
+	\begin{cases}
+		\text{#1} \\
+		\text{#2}
+	\end{cases}
+}
+\newcommand{\soittt}[3]
+{
+	\text{\underline{\color{green!50!black}Soit\color{black}}}
+	\begin{cases}
+		\text{#1} \\
+		\text{#2} \\
+		\text{#3}
+	\end{cases}
+}
+\newcommand{\vect}[1] {\overrightarrow{#1}}
+
+
+\title{Formulaire opérateurs différentielles}
+
+\begin{document}
+
+\begin{center}
+	\vspace{.4cm}
+	{\textbf{\Huge Formulaire opérateurs différentielles}}
+	\vspace{0.5cm}
+  \hrule
+\end{center}
+
+\vtab
+\vtab
+
+\begin{center}
+{\huge \textbf{Nabla }}
+\end{center}
+
+\vtab
+
+\begin{center}
+\begin{multicols}{3}
+		{\Large \underline{Cartésien}} \\
+\vtab
+
+			$$\scalebox{2}{$\displaystyle \overrightarrow{\nabla} = \begin{bmatrix}[1.5] \frac{\partial}{\partial x} \\ \frac{\partial}{\partial y} \\ \frac{\partial}{\partial z} \end{bmatrix}$}$$
+
+	\columnbreak
+		{\Large \underline{Cylindrique}} \\
+
+\vtab
+
+			$$\scalebox{2}{$\displaystyle \overrightarrow{\nabla} = \begin{bmatrix}[1.5] \frac{\partial}{\partial r} \\ \frac{1}{r}\frac{\partial}{\partial \theta} \\ \frac{\partial}{\partial z} \end{bmatrix}$}$$
+
+	
+	\columnbreak
+		{\Large \underline{Sphérique}} \\
+
+\vtab
+
+			$$\scalebox{2}{$\displaystyle \overrightarrow{\nabla} = \begin{bmatrix}[1.5] \frac{\partial}{\partial r} \\ \frac{1}{r}\frac{\partial}{\partial \theta} \\ \frac{1}{r \sin (\theta)} \frac{\partial}{\partial \varphi} \end{bmatrix}$}$$
+\end{multicols}
+\end{center}
+
+\vtab
+\vtab
+
+\begin{center}
+	{\huge \textbf{Opérateurs différentielles}}
+\end{center}
+
+
+\vtab
+
+\begin{center}
+\begin{multicols}{4}
+		{\Large $div$} \\
+\vtab
+
+			$$\scalebox{1.9}{$\displaystyle \overrightarrow{\nabla} \cdot$}$$
+
+	\columnbreak
+		{\Large $\overrightarrow{grad}$} \\
+
+\vtab
+
+			$$\scalebox{1.9}{$\displaystyle \overrightarrow{\nabla}$}$$
+
+	
+	\columnbreak
+		{\Large $\overrightarrow{rot}$} \\
+
+\vtab
+
+			$$\scalebox{1.9}{$\displaystyle \overrightarrow{\nabla}  \wedge$}$$
+
+	\columnbreak
+
+	{\Large $\Delta$} \\
+
+\vtab
+
+			$$\scalebox{1.9}{$\displaystyle \overrightarrow{\nabla} \cdot \overrightarrow{\nabla} = div \hspace{3px} \overrightarrow{grad}$}$$
+
+
+\end{multicols}
+\end{center}
+
+\vtab
+\vtab
+
+
+\begin{center}
+	{\huge \textbf{divergence}}
+\end{center}
+
+\vtab
+
+\begin{center}
+\begin{multicols}{3}
+		{\Large \underline{Cartésien}} \\
+\vtab
+
+			$$\scalebox{0.9}{$\displaystyle \frac{\partial}{\partial x} A_x + \frac{\partial}{\partial y} A_y + \frac{\partial}{\partial z} A_z$}$$
+
+	\columnbreak
+		{\Large \underline{Cylindrique}} \\
+
+\vtab
+
+$$\scalebox{0.9}{$\displaystyle \frac{1}{r} \frac{\partial}{\partial r} (r A_r) + \frac{1}{r}\frac{\partial}{\partial \theta} A_{\theta} + \frac{\partial}{\partial z} A_z $}$$
+
+	
+	\columnbreak
+		{\Large \underline{Sphérique}} \\
+
+\vtab
+
+	$$\scalebox{0.9}{$\displaystyle \frac{1}{r^2} \frac{\partial}{\partial r} (r^2 A_r) + \frac{1}{r \sin \theta}\frac{\partial}{\partial \theta} (\sin \theta A_{\theta} )+ \frac{1}{r \sin (\theta)} \frac{\partial}{\partial \varphi} A_{\varphi} $}$$
+\end{multicols}
+\end{center}
+
+\newpage
+
+\vtab
+\vtab
+\vtab
+
+\begin{center}
+	{\huge \textbf{gradient d'un champ scalaire}}
+\end{center}
+
+\vtab
+
+\begin{center}
+\begin{multicols}{3}
+		{\Large \underline{Cartésien}} \\
+\vtab
+
+			$$\scalebox{2}{$\displaystyle \begin{bmatrix}[1.5] \frac{\partial}{\partial x} A \\ \frac{\partial}{\partial y} A \\ \frac{\partial}{\partial z} A \end{bmatrix}$}$$
+
+	\columnbreak
+		{\Large \underline{Cylindrique}} \\
+
+\vtab
+
+			$$\scalebox{2}{$\displaystyle \begin{bmatrix}[1.5] \frac{\partial}{\partial r} A \\ \frac{1}{r}\frac{\partial}{\partial \theta} A \\ \frac{\partial}{\partial z} A \end{bmatrix}$}$$
+
+	
+	\columnbreak
+		{\Large \underline{Sphérique}} \\
+
+\vtab
+
+			$$\scalebox{2}{$\displaystyle \begin{bmatrix}[1.5] \frac{\partial}{\partial r} A \\ \frac{1}{r}\frac{\partial}{\partial \varphi} A \\ \frac{1}{r \sin (\theta)} \frac{\partial}{\partial \varphi} A \end{bmatrix}$}$$
+\end{multicols}
+\end{center}
+
+
+\vtab
+\vtab
+
+\begin{center}
+	{\huge \textbf{rotationnel}}
+\end{center}
+
+\vtab
+
+\begin{center}
+\begin{multicols}{3}
+		{\Large \underline{Cartésien}} \\
+\vtab
+
+			$$\scalebox{1}{$\displaystyle \overrightarrow{\nabla} = \begin{bmatrix}[1.5] \frac{\partial}{\partial y} A_z - \frac{\partial}{\partial z} A_y \\ \frac{\partial}{\partial z} A_x - \frac{\partial}{\partial x} A_z \\ \frac{\partial}{\partial x} A_y - \frac{\partial}{\partial y} A_x \end{bmatrix}$}$$
+
+	\columnbreak
+		{\Large \underline{Cylindrique}} \\
+
+\vtab
+
+			$$\scalebox{1}{$\displaystyle \overrightarrow{\nabla} = \begin{bmatrix}[1.5] \frac{1}{r} \frac{\partial}{\partial \theta} A_{z} - \frac{\partial}{\partial z}  A_{\theta} \\ \frac{\partial}{\partial z} A_r - \frac{\partial}{\partial r} A_z \\ \frac{1}{r} \frac{\partial}{\partial r} (r A_{\theta}) - \frac{1}{r} \frac{\partial}{\partial \theta} A_r \end{bmatrix}$}$$
+
+	
+	\columnbreak
+		{\Large \underline{Sphérique}} \\
+
+\vtab
+
+			$$\scalebox{1}{$\displaystyle \overrightarrow{\nabla} = \begin{bmatrix}[1.5] \frac{1}{r \sin \theta} \left( \frac{\partial}{\partial \theta} (\sin \theta \hspace{2px} A_{\varphi}) - \frac{\partial}{\partial \varphi}  A_{\theta} \right) \\ \frac{1}{r} \left( \frac{1}{\sin \theta}\frac{\partial}{\partial \varphi} A_r - \frac{\partial}{\partial r} (rA_{\varphi}) \right) \\ \frac{1}{r} \left( \frac{\partial}{\partial r} (r A_{\theta}) - \frac{\partial}{\partial \theta} A_r \right) \end{bmatrix}$}$$
+
+\end{multicols}
+\end{center}
+
+\vtab
+\vtab
+
+
+\begin{center}
+	{\huge \textbf{laplacien scalaire}}
+\end{center}
+
+\vtab
+
+\begin{center}
+\begin{multicols}{3}
+		{\Large \underline{Cartésien}} \\
+\vtab
+
+			$$\scalebox{0.8}{$\displaystyle \frac{\partial^2}{\partial x^2} A + \frac{\partial^2}{\partial y^2} A + \frac{\partial^2}{\partial z^2} A$}$$
+
+	\columnbreak
+		{\Large \underline{Cylindrique}} \\
+
+\vtab
+
+	$$\scalebox{0.8}{$\displaystyle \frac{1}{r} \frac{\partial}{\partial r} \left(r \frac{\partial}{\partial r} A \right) + \frac{1}{r^2}\frac{\partial^2}{\partial \theta^2} A + \frac{\partial^2}{\partial z^2} A $}$$
+
+	
+	\columnbreak
+		{\Large \underline{Sphérique}} \\
+
+\vtab
+
+	$$\scalebox{0.8}{$\displaystyle \frac{1}{r} \frac{\partial^2}{\partial r^2} (r A) + \frac{1}{r^2 \sin \theta}\frac{\partial}{\partial \theta} \left(\sin \theta \frac{\partial}{\partial \theta} A \right)+ \frac{1}{r^2 \sin^2 (\theta)} \frac{\partial^2}{\partial \varphi^2} A $}$$
+\end{multicols}
+\end{center}
+
+\vtab
+\vtab
+
+\newpage
+
+\begin{center}
+	{\huge \textbf{Résultats vraiment utiles}}
+\end{center}
+
+\vtab
+
+$$\scalebox{1.5}{$\displaystyle \overrightarrow{rot} \hspace{3px} ( \overrightarrow{grad} \hspace{5px} A ) = \overrightarrow{0} $}$$
+
+$\longrightarrow$ \textbf{{\Large Consequence :}} On a que si $A$ est \underline{tq} $\overrightarrow{rot} \overrightarrow{A} =  \overrightarrow{0}$, alors on a l'$\exists$ d'un potentiel, \underline{càd} on a affaire à un champ de gradient
+
+\vtab
+
+$$\scalebox{1.5}{$\displaystyle div \hspace{3px}( \overrightarrow{rot} \hspace{5px} \overrightarrow{A} ) = 0 $}$$
+
+$\longrightarrow$ \textbf{{\Large Consequence :}} On a que, si on a un champ $\overrightarrow{U}$ est \underline{tq} $div \overrightarrow{U} = 0$, alors il est \textbf{équivalent} que $\exists$ $A$ \underline{tq} $\overrightarrow{U} = \overrightarrow{rot} \hspace{3px} \overrightarrow{A}$
+
+$$\scalebox{1.5}{$\displaystyle \overrightarrow{grad} \hspace{3px}(AB) = A \hspace{3 px} \overrightarrow{grad}(B) +  B \hspace{3 px} \overrightarrow{grad}(A) $}$$
+
+$$\scalebox{1.5}{$\displaystyle \overrightarrow{rot} \hspace{3px}(A \overrightarrow{B} ) = A \hspace{3 px} \overrightarrow{rot}( \overrightarrow{B} ) + \overrightarrow{grad}(A) \wedge \overrightarrow{B} $}$$
+
+$$\scalebox{1.5}{$\displaystyle div \hspace{3px}(A \overrightarrow{B} ) = A \hspace{3 px} div( \overrightarrow{B} ) + \overrightarrow{grad}(A) \cdot \overrightarrow{B} $}$$
+
+$$\scalebox{1.5}{$\displaystyle div \hspace{3px}(\overrightarrow{A} \wedge \overrightarrow{B} ) = \overrightarrow{B} \cdot \overrightarrow{rot}( \overrightarrow{A} ) - \overrightarrow{A} \cdot \overrightarrow{rot} \overrightarrow{B} $}$$
+
+$$\scalebox{1.5}{$\displaystyle \Delta A = div ( \overrightarrow{grad} \hspace{3px} A ) $}$$
+
+$$\scalebox{1.5}{$\displaystyle \overrightarrow{rot} (\overrightarrow{rot} \overrightarrow{A} ) = \overrightarrow{grad} (div \hspace{3px} \overrightarrow{A} ) - \Delta \overrightarrow{A} $}$$
+
+$$\scalebox{1.5}{$\displaystyle \overrightarrow{grad} (\overrightarrow{A} \cdot \overrightarrow{B} ) = \overrightarrow{A} \wedge \overrightarrow{rot}(\overrightarrow{B}) + (\overrightarrow{A} \cdot \overrightarrow{grad})(\overrightarrow{B}) + \overrightarrow{B} \wedge \overrightarrow{rot}(\overrightarrow{A}) + ( \overrightarrow{B} \cdot \overrightarrow{grad} ) \overrightarrow{A} $}$$
+
+$$\scalebox{1.5}{$\displaystyle \overrightarrow{rot} (\overrightarrow{A} \wedge \overrightarrow{B} ) = \overrightarrow{A} div(\overrightarrow{B}) - (\overrightarrow{A} \cdot \overrightarrow{grad})(\overrightarrow{B}) - \overrightarrow{B} div(\overrightarrow{A}) + ( \overrightarrow{B} \cdot \overrightarrow{grad} ) \overrightarrow{A} $}$$
+
+\end{document}
